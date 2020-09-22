@@ -1,0 +1,49 @@
+{% extends 'main/base.html' %} {% load static%}
+
+<!-- CSS -->
+{% block css %}
+<link rel="stylesheet" href="{% static 'menuapp/css/checkmenu.css' %}" />
+{% endblock css%}
+
+<!-- Navbar -->
+
+<!-- Content -->
+{% block content %}
+<div class="container">
+    <!-- Menulist -->
+    <div class="menulist">
+        <div class="alert alert-primary alert-dismissible fade show">
+            <strong>메뉴</strong>
+            <span>선택한 옵션목록</span> <span class="float-right">가격</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="alert alert-primary alert-dismissible fade show">
+            <strong>아메리카노</strong>
+            <span>ICE, 샷추가, 수량1</span> <span class="float-right">5500원</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+    <!-- Totalprice -->
+    <div class="totalprice">
+        <div class="alert alert-primary">
+            <span>총 금액 <strong class="float-right">20000원</strong></span>
+        </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="button-container">
+        <a class="btn btn-outline-primary" href="{% url 'menu' %}" role="button">계속 주문하기</a>
+        <a class="btn btn-primary" href="{% url 'pay' %}" role="button">결제하기</a>
+    </div>
+
+    <!-- 광고배너 -->
+    <div class="ad-container">
+        <img src="{% static 'menuapp/img/배너광고임시이미지.PNG' %}" alt="" width="100%" />
+    </div>
+</div>
+
+{% endblock content %}

@@ -121,4 +121,13 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATICFILES_DIRS = [
+    Path(BASE_DIR, 'main', 'static'),
+    Path(BASE_DIR, 'menuapp', 'static'),
+    Path(BASE_DIR, 'settingapp', 'static'),
+    Path(BASE_DIR, 'userapp', 'static'),
+]
+
+STATIC_ROOT = Path(BASE_DIR, 'static')
+
 STATIC_URL = '/static/'

@@ -24,7 +24,8 @@ from userapp import urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    # path('menu/', include('menuapp.urls')),
+    path('boss/', views.boss, name='boss'),
+    path('menu/', include('menuapp.urls')),
     # path('setting/', include('settingapp.urls')),
     # path('user/', include('userapp.urls')),
 ]
