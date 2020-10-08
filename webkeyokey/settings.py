@@ -131,3 +131,7 @@ STATICFILES_DIRS = [
 STATIC_ROOT = Path(BASE_DIR, 'static')
 
 STATIC_URL = '/static/'
+
+LOGOUT_REDIRECT_URL = 'main'
+
+AUTH_USER_MODEL = 'main.CustomUser'
