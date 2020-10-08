@@ -3,7 +3,7 @@ from menuapp import views
 
 urlpatterns = [
     path('', views.menu, name='menu'),
-    path('optionmenu/', views.optionmenu, name='optionmenu'),
+    path('optionmenu/<int:pk>', views.optionmenu, name='optionmenu'),
     path('checkmenu/', views.checkmenu, name='checkmenu'),
     path('checkmenu/delete/<int:pk>', views.delete, name='delete'),
     path('pay/', views.pay, name='pay'),

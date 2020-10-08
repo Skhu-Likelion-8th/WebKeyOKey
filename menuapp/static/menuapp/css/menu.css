@@ -61,6 +61,11 @@
     height: 200px;
 }
 
-.menulist .card .card-body a {
-    float: right;
+.menulist .card .card-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    vertical-align: middle;
+    background-color: white;
+    border: 0;
 }

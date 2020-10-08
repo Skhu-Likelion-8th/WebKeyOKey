@@ -9,8 +9,28 @@ def menu(request):
     menus = Menu.objects.all()
     return render(request, 'menuapp/menu.html', {'menus':menus})
 
-def optionmenu(request):
-    return render(request, 'menuapp/optionmenu.html')
+def optionmenu(request, pk):
+    menu = get_object_or_404(Menu, pk=pk)
+    basket = Basket()
+    if request.method == 'POST':
+        basket.menu_id = menu
+        basket.takeout = False
+        if request.POST.getlist('takeout') != []:
+            basket.takeout = True
+        basket.count = request.POST['count']
+        basket.ototal_price = menu.m_price
+        check_values = request.POST.getlist('option[]')
+        op_list = list()
+        for c in check_values:
+            if Option.objects.filter(option_name=c).exists():
+                op = Option.objects.get(option_name=c)
+                basket.ototal_price += op.option_price
+                op_list.append(op)
+
+        basket.ototal_price *= int(basket.count)
+        basket.save()
+        basket.b_options.add(*op_list)
+    return render(request, 'menuapp/optionmenu.html', {'menu':menu})
 
 def checkmenu(request):
     baskets = Basket.objects.all()
