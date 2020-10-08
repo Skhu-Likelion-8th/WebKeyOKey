@@ -1,14 +1,24 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from main.models import CustomUser, Menu, Option, Basket, Pay
+from datetime import datetime
+from django.utils.dateformat import DateFormat
+import random
 
 # Create your views here.
 def menu(request):
-    return render(request, 'menuapp/menu.html')
+    menus = Menu.objects.all()
+    return render(request, 'menuapp/menu.html', {'menus':menus})
 
 def optionmenu(request):
     return render(request, 'menuapp/optionmenu.html')
 
 def checkmenu(request):
-    return render(request, 'menuapp/checkmenu.html')
+    baskets = Basket.objects.all()
+    return render(request, 'menuapp/checkmenu.html', {'baskets': baskets})
+def delete(request, pk):
+    basket = get_object_or_404(Basket, pk=pk)
+    basket.delete()
+    return redirect('checkmenu')
 
 def pay(request):
     return render(request, 'menuapp/pay.html')

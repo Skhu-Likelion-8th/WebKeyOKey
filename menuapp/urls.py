@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.menu, name='menu'),
     path('optionmenu/', views.optionmenu, name='optionmenu'),
     path('checkmenu/', views.checkmenu, name='checkmenu'),
+    path('checkmenu/delete/<int:pk>', views.delete, name='delete'),
     path('pay/', views.pay, name='pay'),
     path('success/', views.success, name='success'),
     # 광현's part
