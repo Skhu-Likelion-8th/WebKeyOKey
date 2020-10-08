@@ -15,3 +15,10 @@ def pay(request):
 
 def success(request):
     return render(request, 'menuapp/success.html')
+
+# 광현's part
+def order(request):
+    return render(request, 'menuapp/order.html')
+
+def orderdetail(request):
+    return render(request, 'menuapp/orderdetail.html')

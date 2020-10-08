@@ -26,6 +26,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('boss/', views.boss, name='boss'),
     path('menu/', include('menuapp.urls')),
-    # path('setting/', include('settingapp.urls')),
+    path('setting/', include('settingapp.urls')),
     # path('user/', include('userapp.urls')),
 ]
