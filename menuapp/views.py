@@ -41,10 +41,22 @@ def delete(request, pk):
     return redirect('checkmenu')
 
 def pay(request):
-    return render(request, 'menuapp/pay.html')
+    pay = Pay()
+    pay.date = datetime.today().strftime("%Y-%m-%d %H:%M:%S")
+    pay.total = 0
+    bt_list = list()
+    for b in Basket.objects.all():
+        pay.total += int(b.ototal_price)
+        bt_list.append(b)
+        # b.delete()
+    pay.order_num = random.randrange(0,100)
+    pay.save()
+    pay.baskets.add(*bt_list)
+    return render(request, 'menuapp/pay.html', {'pay':pay})
 
-def success(request):
-    return render(request, 'menuapp/success.html')
+def success(request, pk):
+    pay = get_object_or_404(Pay, pk=pk)
+    return render(request, 'menuapp/success.html', {'pay':pay})
 
 # 광현's part
 def order(request):

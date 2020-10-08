@@ -13,7 +13,7 @@
     <img class="bills" src="{% static 'menuapp/img/bills.png' %}" alt="" />
     <p>결제가 완료되었습니다!</p>
     <p>아래 주문번호를 확인해주세요.</p>
-    <h2>0010</h2>
+    <h2>{{ pay.order_num }}</h2>
     <a class="btn btn-primary" href="{% url 'menu' %}" role="button">확인</a>
 </div>
 {% endblock content %}
