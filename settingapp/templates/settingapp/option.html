@@ -1,0 +1,13 @@
+<h1>option페이지입니다.</h1>
+
+<h2>메뉴이름</h2>
+<form action="{% url 'option' %}">
+    <h3>기타옵션</h3>
+    <h4>옵션1 :</h4>
+    <input type="text" name="option_name" />
+    <h4>가격(원) :</h4>
+    <input type="text" name="option_price" />
+
+    <input type="button" value="저장" />
+    <input type="button" value="취소" onclick="history.go(-1)" />
+</form>
