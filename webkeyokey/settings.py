@@ -136,6 +136,22 @@ MEDIA_ROOT = Path(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
 
-LOGOUT_REDIRECT_URL = 'main'
+LOGOUT_REDIRECT_URL = 'home'
 
 AUTH_USER_MODEL = 'main.CustomUser'
+
+EMAIL_HOST = 'smtp.gmail.com'
+# 메일을 호스트하는 서버
+EMAIL_PORT = '587'
+# gmail과의 통신하는 포트
+EMAIL_HOST_USER = 'webkeyokey@gmail.com'
+# 발신할 이메일
+EMAIL_HOST_PASSWORD = 'webkey666'
+# 발신할 메일의 비밀번호
+EMAIL_USE_TLS = True
+# TLS 보안 방법
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+# 사이트와 관련한 자동응답을 받을 이메일 주소
+
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = Path(BASE_DIR, "sent_emails")

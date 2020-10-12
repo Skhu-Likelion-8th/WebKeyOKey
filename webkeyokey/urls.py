@@ -16,6 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from django.contrib.auth import views as auth_views
+from django.urls import reverse_lazy
+
+from django.conf import settings
+from django.conf.urls.static import static
+
 from main import views
 from menuapp import urls
 from settingapp import urls
@@ -24,8 +30,10 @@ from userapp import urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
+    path('signin', views.signin, name='signin'),
     path('boss/', views.boss, name='boss'),
     path('menu/', include('menuapp.urls')),
     path('setting/', include('settingapp.urls')),
-    # path('user/', include('userapp.urls')),
+    path('', include('django.contrib.auth.urls')),
+    path('user/', include('userapp.urls')),
 ]
