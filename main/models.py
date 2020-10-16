@@ -18,7 +18,7 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
 
-    phone = models.IntegerField(default="010")
+    phone = models.TextField(default="010")
     u_id = models.IntegerField(null=True)
     answer = models.TextField(max_length=200, blank=True)
     question_id = models.IntegerField(default=1, choices=Q)
