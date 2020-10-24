@@ -6,21 +6,26 @@ h1 {
 
 .card {
     float: left;
-    margin-left: 123px;
-    margin-top: 50px;
+    /* margin-left: 123px; */
+    /* margin-top: 50px; */
+    margin: 10px;
     text-align: center;
-    width: 479px;
-    height: 479px;
+    width: 21rem;
+    height: 18rem;
     border-radius: 55px;
     background-color: #ffb793;
 }
 
 .btn-link {
-    font-size: 70px;
-    margin-top: 135px;
+    font-size: 50px;
+    margin-top: 4rem;
     color: black;
 }
 
 h6 {
     font-size: 25px;
+}
+
+.container {
+    width: max-content;
 }
