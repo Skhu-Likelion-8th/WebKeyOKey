@@ -6,9 +6,13 @@
 
 {% block content %}
 {% for por in por_list.all %}
+{% if por.orders.count > 0 %}
     <div class="card" style="width: 18rem;">
         <div class="card-header">
             주문번호 {{ por.order_num }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true" onclick="location.href ='{% url 'delete_order' pk=por.pk %}'">&times;</span> <!-- orders 삭제 -->
+            </button>
         </div>
 
         {% for or in por.orders.all %}
@@ -29,7 +33,7 @@
         {% endif %}
         </li>
         {% endif %}
-        {% if forloop.counter > 3 %}
+        {% if forloop.counter > 2 and forloop.counter < 4 %} <!-- 메뉴가 많으면 더보기가 여러개 생성되어 3<counter<5 조건으로 변경함-->
         <a href="{% url 'orderdetail' pk=por.pk %}" class="btn btn-primary">더보기</a>
         {% endif %}
         {% endfor %}
@@ -37,8 +41,9 @@
 
     </div>
     <br>
+    {% endif %}
 {% endfor %}
-<div class="order">
+<!-- <div class="order">
     <ol type="1">
         <div class="card" style="width: 18rem">
             <div class="card-board">
@@ -139,6 +144,6 @@
             </div>
         </div>
     </ol>
-</div>
+</div> -->
 
 {% endblock content %}

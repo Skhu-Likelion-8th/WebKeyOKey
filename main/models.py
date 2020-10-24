@@ -63,7 +63,7 @@ class Pay(models.Model):
     date = models.DateTimeField()
     total = models.IntegerField()
     order_num = models.IntegerField()
-    baskets = models.ManyToManyField('Basket', blank=True)
+    orders = models.ManyToManyField('Order', blank=True)
 
 class Order(models.Model):
     def __str__(self):
