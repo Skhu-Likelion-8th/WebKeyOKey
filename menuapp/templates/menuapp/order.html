@@ -5,117 +5,154 @@
 <!--기본 Navbar -->
 
 {% block content %}
-{% for por in por_list.all %}
-{% if por.orders.count > 0 %}
-    <div class="card" style="width: 18rem;">
-        <div class="card-header">
-            주문번호 {{ por.order_num }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true" onclick="location.href ='{% url 'delete_order' pk=por.pk %}'">&times;</span> <!-- orders 삭제 -->
-            </button>
-        </div>
+<div class="order">
+    <ol type="1">
+        {% for por in por_list.all %}
+        {% if por.orders.count > 0 %}
+        <div class="card" style="width: 18rem;">
+            <div class="card-board">
+                <h2>
+                    <li class="card-number">주문번호 {{ por.order_num }}</li>
+                </h2>
+                <hr>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true"
+                        onclick="location.href ='{% url 'delete_order' pk=por.pk %}'">&times;</span> <!-- orders 삭제 -->
+                </button>
 
-        {% for or in por.orders.all %}
-        {% if forloop.counter < 3 %}
-        <ul class="list-group list-group-flush">
-        <li class="list-group-item"><p>{{ or.or_name }}</p>
-            <p>{% for option in or.or_options.all %}
-                {% if option != 'null' %}
-                {{ option.option_name }}
-                {% endif %}
-                {% endfor %}
+                {% for or in por.orders.all %}
+                {% if forloop.counter < 3 %}
+                <div class="card-text">
+                    <p class="card-text">{{ or.or_name }}</p>
+                    <p class="options">
+                        {% for option in or.or_options.all %}
+                        {% if option != 'null' %}
+                        {{ option.option_name }}
+                        {% endif %}
+                        {% endfor %}
+                    </p>
+                    <p class="quantity">{{ or.or_count }}개</p>
+                    {% if or.or_takeout %}
+                    <p class="take">테이크아웃</p>
+                    {% else %}
+                    <p class="take">매장</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+            <hr>
+            {% if forloop.counter > 2 and forloop.counter < 4 %}
+            <!-- 메뉴가 많으면 더보기가 여러개 생성되어 3<counter<5 조건으로 변경함-->
+            <p>
+                <a href="{% url 'orderdetail' pk=por.pk %}" class="btn btn-primary">더보기</a>
             </p>
-            <p>{{ or.or_count }}개</p>
-        {% if or.or_takeout %}
-            <p>테이크아웃</p>
-        {% else %}
-            <p>매장</p>
-        {% endif %}
-        </li>
-        {% endif %}
-        {% if forloop.counter > 2 and forloop.counter < 4 %} <!-- 메뉴가 많으면 더보기가 여러개 생성되어 3<counter<5 조건으로 변경함-->
-        <a href="{% url 'orderdetail' pk=por.pk %}" class="btn btn-primary">더보기</a>
+            {% endif %}
+            {% endfor %}
+        </div>
         {% endif %}
         {% endfor %}
-        </ul>
-
-    </div>
-    <br>
-    {% endif %}
-{% endfor %}
-<!-- <div class="order">
-    <ol type="1">
-        <div class="card" style="width: 18rem">
+        <!-- 예시 -->
+        <div class="card">
             <div class="card-board">
                 <h2>
                     <li class="card-number">주문번호</li>
                 </h2>
+                <hr>
+                <p class="card-text">메뉴 이름</p>
+                <p class="options">옵션</p>
+                <p class="quantity">수량</p>
+                <p class="take">매장/포장 표시</p>
+                <hr>
                 <p class="card-text">메뉴 이름</p>
                 <p class="options">옵션</p>
                 <p class="quantity">수량</p>
                 <p class="take">매장/포장 표시</p>
                 <p>
-                    <a href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">더보기</a>
+                    <a href="#" class="btn btn-primary">더보기</a>
                 </p>
             </div>
         </div>
-        <div class="card" style="width: 18rem">
+        <div class="card">
             <div class="card-board">
                 <h2>
                     <li class="card-number">주문번호</li>
                 </h2>
+                <hr>
+                <p class="card-text">메뉴 이름</p>
+                <p class="options">옵션</p>
+                <p class="quantity">수량</p>
+                <p class="take">매장/포장 표시</p>
+                <hr>
                 <p class="card-text">메뉴 이름</p>
                 <p class="options">옵션</p>
                 <p class="quantity">수량</p>
                 <p class="take">매장/포장 표시</p>
                 <p>
-                    <a href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">더보기</a>
+                    <a href="#" class="btn btn-primary">더보기</a>
                 </p>
             </div>
         </div>
-        <div class="card" style="width: 18rem">
+        <div class="card">
             <div class="card-board">
                 <h2>
                     <li class="card-number">주문번호</li>
                 </h2>
+                <hr>
+                <p class="card-text">메뉴 이름</p>
+                <p class="options">옵션</p>
+                <p class="quantity">수량</p>
+                <p class="take">매장/포장 표시</p>
+                <hr>
                 <p class="card-text">메뉴 이름</p>
                 <p class="options">옵션</p>
                 <p class="quantity">수량</p>
                 <p class="take">매장/포장 표시</p>
                 <p>
-                    <a href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">더보기</a>
+                    <a href="#" class="btn btn-primary">더보기</a>
                 </p>
             </div>
         </div>
-        <div class="card" style="width: 18rem">
+        <div class="card">
             <div class="card-board">
                 <h2>
                     <li class="card-number">주문번호</li>
                 </h2>
+                <hr>
+                <p class="card-text">메뉴 이름</p>
+                <p class="options">옵션</p>
+                <p class="quantity">수량</p>
+                <p class="take">매장/포장 표시</p>
+                <hr>
                 <p class="card-text">메뉴 이름</p>
                 <p class="options">옵션</p>
                 <p class="quantity">수량</p>
                 <p class="take">매장/포장 표시</p>
                 <p>
-                    <a href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">더보기</a>
+                    <a href="#" class="btn btn-primary">더보기</a>
                 </p>
             </div>
         </div>
-        <div class="card" style="width: 18rem">
+        <div class="card">
             <div class="card-board">
                 <h2>
                     <li class="card-number">주문번호</li>
                 </h2>
+                <hr>
+                <p class="card-text">메뉴 이름</p>
+                <p class="options">옵션</p>
+                <p class="quantity">수량</p>
+                <p class="take">매장/포장 표시</p>
+                <hr>
                 <p class="card-text">메뉴 이름</p>
                 <p class="options">옵션</p>
                 <p class="quantity">수량</p>
                 <p class="take">매장/포장 표시</p>
                 <p>
-                    <a href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">더보기</a>
+                    <a href="#" class="btn btn-primary">더보기</a>
                 </p>
             </div>
         </div>
-        <div class="card" style="width: 18rem">
+        <div class="card">
             <div class="card-board">
                 <h2>
                     <li class="card-number">주문번호</li>
@@ -124,26 +161,9 @@
                 <p class="options">옵션</p>
                 <p class="quantity">수량</p>
                 <p class="take">매장/포장 표시</p>
-                <p>
-                    <a href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">더보기</a>
-                </p>
-            </div>
-        </div>
-        <div class="card" style="width: 18rem">
-            <div class="card-board">
-                <h2>
-                    <li class="card-number">주문번호</li>
-                </h2>
-                <p class="card-text">메뉴 이름</p>
-                <p class="options">옵션</p>
-                <p class="quantity">수량</p>
-                <p class="take">매장/포장 표시</p>
-                <p>
-                    <a href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">더보기</a>
-                </p>
             </div>
         </div>
     </ol>
-</div> -->
+</div>
 
 {% endblock content %}

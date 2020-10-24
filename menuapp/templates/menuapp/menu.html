@@ -53,17 +53,19 @@
                 </div>
                 <div class="card-footer">
                     <span class="price">{{ menu.m_price }}원</span>
-                    <a href="#" class="btn btn-primary" onclick="location.href ='{% url 'optionmenu' pk=menu.pk %}'">주문</a>
+                    <a href="{% url 'optionmenu' pk=menu.pk %}" class="btn btn-primary">주문</a>
                 </div>
             </div>
             {% endif %}
             {% endfor %}
             <!-- 예시 -->
-            <!-- <div class="card">
+            <div class="card">
                 <img src="{% static 'menuapp/img/아이스아메리카노.jpg' %}" class="card-img-top" alt="..." />
                 <div class="card-body">
                     <h5 class="card-title">아이스아메리카노</h5>
                     <p class="card-text">메뉴에 대한 간단한 설명</p>
+                </div>
+                <div class="card-footer">
                     <span class="price">4500원</span>
                     <a href="#" class="btn btn-primary">주문</a>
                 </div>
@@ -73,6 +75,8 @@
                 <div class="card-body">
                     <h5 class="card-title">아이스아메리카노</h5>
                     <p class="card-text">메뉴에 대한 간단한 설명</p>
+                </div>
+                <div class="card-footer">
                     <span class="price">4500원</span>
                     <a href="#" class="btn btn-primary">주문</a>
                 </div>
@@ -82,6 +86,8 @@
                 <div class="card-body">
                     <h5 class="card-title">아이스아메리카노</h5>
                     <p class="card-text">메뉴에 대한 간단한 설명</p>
+                </div>
+                <div class="card-footer">
                     <span class="price">4500원</span>
                     <a href="#" class="btn btn-primary">주문</a>
                 </div>
@@ -91,6 +97,8 @@
                 <div class="card-body">
                     <h5 class="card-title">아이스아메리카노</h5>
                     <p class="card-text">메뉴에 대한 간단한 설명</p>
+                </div>
+                <div class="card-footer">
                     <span class="price">4500원</span>
                     <a href="#" class="btn btn-primary">주문</a>
                 </div>
@@ -100,6 +108,8 @@
                 <div class="card-body">
                     <h5 class="card-title">아이스아메리카노</h5>
                     <p class="card-text">메뉴에 대한 간단한 설명</p>
+                </div>
+                <div class="card-footer">
                     <span class="price">4500원</span>
                     <a href="#" class="btn btn-primary">주문</a>
                 </div>
@@ -109,6 +119,8 @@
                 <div class="card-body">
                     <h5 class="card-title">아이스아메리카노</h5>
                     <p class="card-text">메뉴에 대한 간단한 설명</p>
+                </div>
+                <div class="card-footer">
                     <span class="price">4500원</span>
                     <a href="#" class="btn btn-primary">주문</a>
                 </div>
@@ -118,6 +130,8 @@
                 <div class="card-body">
                     <h5 class="card-title">아이스아메리카노</h5>
                     <p class="card-text">메뉴에 대한 간단한 설명</p>
+                </div>
+                <div class="card-footer">
                     <span class="price">4500원</span>
                     <a href="#" class="btn btn-primary">주문</a>
                 </div>
@@ -127,10 +141,34 @@
                 <div class="card-body">
                     <h5 class="card-title">아이스아메리카노</h5>
                     <p class="card-text">메뉴에 대한 간단한 설명</p>
+                </div>
+                <div class="card-footer">
                     <span class="price">4500원</span>
                     <a href="#" class="btn btn-primary">주문</a>
                 </div>
-            </div> -->
+            </div>
+            <div class="card">
+                <img src="{% static 'menuapp/img/아이스아메리카노.jpg' %}" class="card-img-top" alt="..." />
+                <div class="card-body">
+                    <h5 class="card-title">아이스아메리카노</h5>
+                    <p class="card-text">메뉴에 대한 간단한 설명</p>
+                </div>
+                <div class="card-footer">
+                    <span class="price">4500원</span>
+                    <a href="#" class="btn btn-primary">주문</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="{% static 'menuapp/img/아이스아메리카노.jpg' %}" class="card-img-top" alt="..." />
+                <div class="card-body">
+                    <h5 class="card-title">아이스아메리카노</h5>
+                    <p class="card-text">메뉴에 대한 간단한 설명</p>
+                </div>
+                <div class="card-footer">
+                    <span class="price">4500원</span>
+                    <a href="#" class="btn btn-primary">주문</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
