@@ -11,17 +11,17 @@
     justify-content: flex-end;
 }
 
-.mainbox{
+.mainbox {
     /*width: 1920px;*/
-    height: 500px;
+    height: 550px;
     background-color: #ff9966;
     text-align: center;
 }
 
-.signupbox{
+.signupbox {
     padding: 2rem 30rem;
-    margin:auto; 
-} 
+    margin: auto;
+}
 
 .id {
     padding-bottom: 20px;
@@ -37,38 +37,39 @@
     border-color: #ff9966;
 }
 
-.signinbutton
-{
+.signinbutton {
     width: 200px;
     /* height: 80px; */
     border-radius: 4px;
     border: solid 2px #ffffff;
     color: white;
+    padding: 10px;
     background-color: #ff9966;
-  }
+}
 
-.findpassword{
+.findpassword {
     font-size: 10px;
     color: white;
 }
 
-h2{
+h2 {
     font-size: 50px;
-    color:white;
+    color: white;
     padding-top: 50px;
+    margin-bottom: 0;
 }
 
-p1{
+p1 {
     font-size: 14px;
-    color:white;
+    color: white;
 }
 
-p2{
+p2 {
     font-size: 20px;
-    color:white;
+    color: white;
 }
 
-.signupbutton{
+.signupbutton {
     width: max-content;
     height: 40px;
     border-radius: 4px;
@@ -76,39 +77,50 @@ p2{
     text-align: center;
 }
 
-form{
+form {
     text-align: center;
     margin: auto;
     /* padding-top: 50px; */
 }
 
-.foot{
+.foot {
     height: 130px;
     background-color: #ff9966;
     text-align: center;
-    margin-top:50px;
-    padding: auto;
+    margin-top: 50px;
+    /* padding: auto; */
     /* padding-top:20px; */
 }
 
-.up{
-    background-color:#ffb793;
+.up {
+    background-color: #ffb793;
     height: 130px;
     text-align: center;
-    color:white;
+    color: white;
+    padding-top: 50px;
 }
 
-section img{
+.name {
+    padding-top: 50px;
+    /* vertical-align: middle; */
+}
+
+.row {
+    margin: 0;
+    margin-top: 50px;
+}
+
+section img {
     width: 100%;
-    padding-top:50px;
+    padding-top: 50px;
 }
 
-header img{
+header img {
     width: 80px;
     height: 80px;
 }
 
-.input-style{
+.input-style {
     border-radius: 15px;
 }
 

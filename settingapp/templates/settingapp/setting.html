@@ -1,4 +1,25 @@
-{% extends 'main/base.html' %}
+{% extends 'main/base.html' %} {% load static%}
+
+<!-- CSS -->
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'settingapp/css/setting.css' %}" />
+{% endblock css%}
+
+
+<!-- setting.html용 boss Navbar -->
+{% block nav %}
+<nav class="navbar sticky-top navbar-light nav-color">
+    <a class="navbar-brand" href="#">
+        <img src="{% static 'main/img/logo/OK_가로형v.png' %}" width="130" height="30" margin-left="20" class="d-inline-block align-top" alt=" " loading="lazy" />
+    </a>
+
+    <div class="bossbuttons">
+        <a href="#" class="btn btn-primary">로그아웃</a>
+        <a href="#" class="btn btn-primary">주문확인</a>
+        <a href="#" class="btn btn-primary">설정</a>
+    </div>
+</nav>
+{% endblock nav %}
 
 {% block content %}
 <h1>설정</h1>

@@ -1,0 +1,14 @@
+.layout {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+.nav-color {
+    background-color: #ffb793;
+}
+
+.bossbuttons{
+    margin-right: 15px;
+    
+  }
