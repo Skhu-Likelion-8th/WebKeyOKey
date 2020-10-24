@@ -2,78 +2,76 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-  }
-  
-  .container {
-    padding: 4rem 25rem;
-    /* margin: auto; */
-  
-  }
-  
-  form{
+}
+
+.container {
+    padding: 4rem 27rem;
+    margin: auto;
+}
+
+form {
     text-align: center;
-  }
-  
-  .signupbutton{
+    padding-left: 50px;
+}
+
+.signupbutton {
     justify-content: center;
-  }
-  
-  
-  .name {
+}
+
+.name {
     /*width: 360px;*/
     height: 50px;
-  }
-  
-  .email {
+}
+
+.email {
     /*width: 360px;*/
     height: 50px;
-  }
-  
-  .phonenumber {
+}
+
+.phonenumber {
     /*width: 360px;*/
     height: 50px;
-  }
-  
-  
-  .id {
+}
+
+.id {
     /*width: 360px;*/
     height: 50px;
-  }
-  
-  .password {
+}
+
+.password {
     /*width: 360px;*/
     height: 50px;
-  }
-  
-  .repassword {
+}
+
+.repassword {
     /*width: 293px;*/
     height: 50px;
-  }
-  
-  .question {
+}
+
+.question {
     /*width: 360px;*/
     height: 50px;
-  }
-  
-  .answer {
+}
+
+.answer {
     /*width: 360px;*/
     height: 50px;
-  }
-  
-  .checkpasswordbutton .btn-primary {
+}
+
+.checkpasswordbutton .btn-primary {
     /*width: 53px;*/
     width: max-content;
-    height: 47px;
-  }
-  
-  .signupbutton .btn-primary {
+    height: 40px;
+}
+
+.signupbutton .btn-primary {
     /*width: 120px;*/
     height: 40px;
     margin: auto;
     margin-top: 50px;
-  }
-  
-  form .input-style {
+}
+
+form .input-style {
     /* width: 28px; */
     /* height: 18px; */
     /* font-family: Arial; */
@@ -86,14 +84,13 @@
     text-align: left;
     color: #ff9966;
     border: 1px solid #ff9966;
-  }
-  
-  form .input-style::placeholder {
+}
+
+form .input-style::placeholder {
     color: #ff9966;
-  }
-  
-  .row{
+}
+
+.row {
     margin-right: 0;
     margin-left: 0;
-  
-  }
+}

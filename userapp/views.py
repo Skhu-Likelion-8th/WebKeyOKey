@@ -29,7 +29,7 @@ def signup(request):
                 answer=form.cleaned_data['answer'])
 
                 login(request, new_user)
-                return redirect('home')
+                return redirect('boss')
         else:
             return render(request, 'userapp/signup.html',{'form':form, 'error':'동일한 사업자번호가 존재합니다. 다른 번호를 입력해주세요'})
     else:
