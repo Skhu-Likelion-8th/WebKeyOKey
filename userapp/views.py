@@ -5,43 +5,47 @@ from main.models import CustomUser
 
 from django.contrib.auth import login, authenticate
 from django.http import HttpResponse
-
-# from django.contrib.auth.forms import PasswordChangeForm
-# from django.contrib.auth import update_session_auth_hash
+from django.contrib import messages
 
 # Create your views here.
 def signup(request):
     if request.method == "POST":
         form = UserForm(request.POST)
+        find_u_id = request.POST['u_id']
         if form.is_valid():
-            new_user = CustomUser.objects.create_user(username=form.cleaned_data['username'],
-            u_id=form.cleaned_data['u_id'],
-            password=form.cleaned_data['password'],
-            email=form.cleaned_data['email'],
-            phone=form.cleaned_data['phone'],
-            question_id=form.cleaned_data['question_id'],
-            answer=form.cleaned_data['answer'])
-            login(request, new_user)
-            return redirect('home')
+            if CustomUser.objects.filter(u_id=find_u_id).exists():
+                form = UserForm()
+                return render(request, 'userapp/signup.html',{'form':form, 'error':'동일한 사업자번호가 존재합니다. 다른 번호를 입력해주세요'})
+            if form.cleaned_data['password'] != form.cleaned_data['password_check']:
+                form = UserForm()
+                return render(request, 'userapp/signup.html',{'form':form, 'error':'비밀번호와 비밀번호 확인이 다릅니다.'})
+            else:
+                new_user = CustomUser.objects.create_user(username=form.cleaned_data['username'],
+                u_id=form.cleaned_data['u_id'],
+                password=form.cleaned_data['password'],
+                email=form.cleaned_data['email'],
+                phone=form.cleaned_data['phone'],
+                question_id=form.cleaned_data['question_id'],
+                answer=form.cleaned_data['answer'])
+
+                login(request, new_user)
+                return redirect('home')
+        else:
+            return render(request, 'userapp/signup.html',{'form':form, 'error':'동일한 사업자번호가 존재합니다. 다른 번호를 입력해주세요'})
     else:
         form = UserForm()
         return render(request, 'userapp/signup.html', {'form': form})
 
-#1.보안문제 풀기 2. 임시저장
-# 아이디 먼저 확인 -> 유저 정보 확인 -> 1) 아이디 없음 2) 메일보내기
-
-# def password(request):
-#     if not request.user.is_active:
-#         return HttpResponse('First Signin Please')
-
-#     if request.method == 'POST':
-#         password_change_form = PasswordChangeForm(request.user, request.POST)
-
-#         if password_change_form.is_valid():
-#             user = password_change_form.save()
-#             update_session_auth_hash(request, user)
-#             return redirect('userapp/password.html', request.user.username)
-    
-#     else:
-#         password_change_form = PasswordChangeForm(request.user)
-#     return render(request, 'userapp/password.html', { 'password_change_form' : password_change_form})
+def findpassword(request):
+    if request.method == "POST":
+        find_u_id = request.POST['u_id']
+        username = request.POST['username']
+        phone = request.POST['phone']
+        answer = request.POST['answer']       
+        if CustomUser.objects.filter(u_id=find_u_id).exists():
+            user = get_object_or_404(CustomUser, u_id=find_u_id)
+            if user.username == username and user.phone == phone and user.answer == answer:
+                return redirect('password_reset')
+        else:
+            return redirect('findpassword')
+    return render(request, 'userapp/findpassword.html')

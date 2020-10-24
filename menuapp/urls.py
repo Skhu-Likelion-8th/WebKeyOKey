@@ -1,14 +1,14 @@
-from django.urls import path, include
+from django.urls import path
 from menuapp import views
 
 urlpatterns = [
     path('', views.menu, name='menu'),
     path('optionmenu/<int:pk>', views.optionmenu, name='optionmenu'),
     path('checkmenu/', views.checkmenu, name='checkmenu'),
-    path('checkmenu/delete/<int:pk>', views.delete, name='delete'),
     path('pay/', views.pay, name='pay'),
-    path('pay/success/<int:pk>', views.success, name='success'),
-    # 광현's part
-    path('order/',views.order, name='order'),
-    path('orderdetail/',views.orderdetail, name='orderdetail'),
+    path('pay/success/', views.success, name='success'),
+    path('order/', views.order, name='order'),
+    path('orderdetail/<int:pk>', views.orderdetail, name='orderdetail'),
+    path('checkmenu/delete_basket/<int:pk>', views.delete_basket, name='delete_basket'),
+    path('checkmenu/delete_order/<int:pk>', views.delete_order, name='delete_order'),
 ]

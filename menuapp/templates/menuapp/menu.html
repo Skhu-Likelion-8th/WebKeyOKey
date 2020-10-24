@@ -41,23 +41,25 @@
         </div>
         <!-- 메뉴자리 -->
         <div class="menulist">
-            {% for menus in menus.all %}
+            {% for menu in menus %}
+            {% if menu.user_id == user %}
             <div class="card">
-                {% if menus.m_img %}
-                <img class="card-img-top" src="{{ menus.m_img.url }}" alt="" />
+                {% if menu.m_img %}
+                <img class="card-img-top" src="{{ menu.m_img.url }}" alt="" />
                 {% endif %}
                 <div class="card-body">
-                    <h5 class="card-title">{{ menus.m_name }}</h5>
-                    <p class="card-text">{{ menus.m_info }}</p>
+                    <h5 class="card-title">{{ menu.m_name }}</h5>
+                    <p class="card-text">{{ menu.m_info }}</p>
                 </div>
                 <div class="card-footer">
-                    <span class="price">{{ menus.m_price }}원</span>
-                    <a href="#" class="btn btn-primary" onclick="location.href ='{% url 'optionmenu' pk=menus.pk %}'">주문</a>
+                    <span class="price">{{ menu.m_price }}원</span>
+                    <a href="#" class="btn btn-primary" onclick="location.href ='{% url 'optionmenu' pk=menu.pk %}'">주문</a>
                 </div>
             </div>
+            {% endif %}
             {% endfor %}
             <!-- 예시 -->
-            <div class="card">
+            <!-- <div class="card">
                 <img src="{% static 'menuapp/img/아이스아메리카노.jpg' %}" class="card-img-top" alt="..." />
                 <div class="card-body">
                     <h5 class="card-title">아이스아메리카노</h5>
@@ -128,7 +130,7 @@
                     <span class="price">4500원</span>
                     <a href="#" class="btn btn-primary">주문</a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

@@ -7,8 +7,27 @@
 
 {% block content %}
 <div class="orderdetail">
-    <h1>주문 번호 00번 고객님 입니다</h1>
-    <div class="ordercard"></div>
+    <h1>주문 번호 {{ p_or.order_num }}번 고객님 입니다</h1>
+    {% for p in p_or.orders.all %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{ p.or_name }}</strong>
+        {% for option in p.or_options.all %}
+            {{ option.option_name }}
+        {% endfor %}
+        {{ p.or_count }}개
+        {% if p.or_takeout %}
+            <p>테이크아웃</p>
+            {% else %}
+            <p>매장</p>
+            {% endif %}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true" onclick="location.href ='{% url 'delete_order' pk=p.pk %}'">&times;</span>
+        </button>
+        </div>
+        {% endfor %}
+        
+        <a href="{% url 'order' %}" class="btn btn-primary">이전</a>
+    <!-- <div class="ordercard"></div>
         <ol type="1">
             <div class="card" style="width: 18rem">
                 <h3>
@@ -51,9 +70,9 @@
                 <p class="take">매장/포장 표시</p>
             </div>
         </ol>
-    </div>
+    </div> -->
 
     <a href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">이전</a>
-    <a href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">완료</a>
+    <!-- <a href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">완료</a> -->
 </div>
 {% endblock content %}

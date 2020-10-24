@@ -36,4 +36,4 @@ urlpatterns = [
     path('setting/', include('settingapp.urls')),
     path('', include('django.contrib.auth.urls')),
     path('user/', include('userapp.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

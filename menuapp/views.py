@@ -34,33 +34,76 @@ def optionmenu(request, pk):
 
 def checkmenu(request):
     baskets = Basket.objects.all()
-    return render(request, 'menuapp/checkmenu.html', {'baskets': baskets})
-def delete(request, pk):
+    money = 0
+    for b in baskets:
+        money +=  int(b.ototal_price)
+    return render(request, 'menuapp/checkmenu.html', {'baskets': baskets, 'money':money})
+
+def delete_basket(request, pk):
     basket = get_object_or_404(Basket, pk=pk)
     basket.delete()
     return redirect('checkmenu')
 
 def pay(request):
+    money = 0
+    for b in Basket.objects.all():
+        money += int(b.ototal_price)
+    if money == 0:
+        return HttpResponse("주문금액이 0원입니다. 메뉴를 추가해주세요.")
+    return render(request, 'menuapp/pay.html', {'money':money})
+
+def success(request):
     pay = Pay()
     pay.date = datetime.today().strftime("%Y-%m-%d %H:%M:%S")
     pay.total = 0
+    pay.order_num = random.randrange(0,100)
     bt_list = list()
+    or_list = list()
+    # for b in Basket.objects.all():
     for b in Basket.objects.all():
         pay.total += int(b.ototal_price)
-        bt_list.append(b)
-        # b.delete()
-    pay.order_num = random.randrange(0,100)
+        order = Order()
+        order.or_name = b.menu_id.m_name
+        order.or_num = pay.order_num
+        order.or_count = b.count
+        order.or_takeout = b.takeout
+        for bt in b.b_options.all():
+            bt_list.append(bt)
+        # if Option.objects.filter(option_name=b.b_options).exists():
+        #     print(b.b_options.option_name)
+        #     bt = Option.objects.get(option_name=b.b_options)
+        #     bt_list.append(bt)
+            
+        order.save()
+        order.or_options.add(*bt_list)
+        bt_list.clear()
+        or_list.append(order)
+        
+        # print(bt_list)
+        # bt_list.clear()
+        # print(bt_list)
+        # print(order)
+        
     pay.save()
-    pay.baskets.add(*bt_list)
-    return render(request, 'menuapp/pay.html', {'pay':pay})
+    pay.orders.add(*or_list)
 
-def success(request, pk):
-    pay = get_object_or_404(Pay, pk=pk)
+    # for o in Order.objects.all():
+    #     if o.or_num == pay.order_num:
+    #         pay.orders.add(o)
+    
+    for b in Basket.objects.all():
+        b.delete()
     return render(request, 'menuapp/success.html', {'pay':pay})
 
-# 광현's part
 def order(request):
-    return render(request, 'menuapp/order.html')
+    por_list = Pay.objects.all()
+    return render(request, 'menuapp/order.html', {'por_list':por_list})
 
-def orderdetail(request):
-    return render(request, 'menuapp/orderdetail.html')
+def delete_order(request, pk):
+    order = get_object_or_404(Order, pk=pk)
+    order.delete()
+    return redirect('order')
+
+def orderdetail(request, pk):
+    p_or = get_object_or_404(Pay, pk=pk)
+    return render(request, 'menuapp/orderdetail.html', {'p_or':p_or})

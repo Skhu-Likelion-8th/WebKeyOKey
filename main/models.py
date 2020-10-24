@@ -1,11 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-#8.25 - CustomUser 모델 추가시 null? 오류
-
-# Create your models here.
-
-
 class CustomUser(AbstractUser):
     Q = [
         (1, '나의 보물 1호는?'),
@@ -18,10 +13,13 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
 
+    u_id = models.IntegerField(unique=True, null=True)
+    username = models.TextField(null=True)
     phone = models.TextField(default="010")
-    u_id = models.IntegerField(null=True)
     answer = models.TextField(max_length=200, blank=True)
     question_id = models.IntegerField(default=1, choices=Q)
+    USERNAME_FIELD = 'u_id'
+    REQUIRED_FIELDS = ['username']
 
 class Menu(models.Model):
     def __str__(self):
@@ -70,6 +68,7 @@ class Pay(models.Model):
 class Order(models.Model):
     def __str__(self):
         return str(self.or_num)
+
     or_name = models.CharField(max_length=200)
     or_num = models.IntegerField()
     or_options = models.ManyToManyField('Option', blank=True)

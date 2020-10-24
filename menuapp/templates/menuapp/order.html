@@ -5,6 +5,39 @@
 <!--기본 Navbar -->
 
 {% block content %}
+{% for por in por_list.all %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            주문번호 {{ por.order_num }}
+        </div>
+
+        {% for or in por.orders.all %}
+        {% if forloop.counter < 3 %}
+        <ul class="list-group list-group-flush">
+        <li class="list-group-item"><p>{{ or.or_name }}</p>
+            <p>{% for option in or.or_options.all %}
+                {% if option != 'null' %}
+                {{ option.option_name }}
+                {% endif %}
+                {% endfor %}
+            </p>
+            <p>{{ or.or_count }}개</p>
+        {% if or.or_takeout %}
+            <p>테이크아웃</p>
+        {% else %}
+            <p>매장</p>
+        {% endif %}
+        </li>
+        {% endif %}
+        {% if forloop.counter > 3 %}
+        <a href="{% url 'orderdetail' pk=por.pk %}" class="btn btn-primary">더보기</a>
+        {% endif %}
+        {% endfor %}
+        </ul>
+
+    </div>
+    <br>
+{% endfor %}
 <div class="order">
     <ol type="1">
         <div class="card" style="width: 18rem">

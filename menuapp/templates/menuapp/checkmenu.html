@@ -21,7 +21,7 @@
             <span>{{ b.count }}개</span>
             <span class="float-right">{{ b.ototal_price }}원</span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true" onclick="location.href ='{% url 'delete' pk=b.pk %}'">&times;</span>
+                <span aria-hidden="true" onclick="location.href ='{% url 'delete_basket' pk=b.pk %}'">&times;</span>
             </button>
         </div>
         {% endfor %}
@@ -37,7 +37,7 @@
     <!-- Totalprice -->
     <div class="totalprice">
         <div class="alert alert-primary">
-            <span>총 금액 <strong class="float-right">20000원</strong></span>
+            <span>총 금액 <strong class="float-right">{{ money }}원</strong></span>
         </div>
     </div>
 
