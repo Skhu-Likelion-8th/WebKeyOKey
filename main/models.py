@@ -14,9 +14,9 @@ class CustomUser(AbstractUser):
         return self.username
 
     u_id = models.IntegerField(unique=True, null=True)
-    username = models.TextField(null=True)
-    phone = models.TextField(default="010")
-    answer = models.TextField(max_length=200, blank=True)
+    username = models.CharField(max_length=20, null=True)
+    phone = models.CharField(default="010", max_length=11)
+    answer = models.CharField(max_length=200, blank=True)
     question_id = models.IntegerField(default=1, choices=Q)
     USERNAME_FIELD = 'u_id'
     REQUIRED_FIELDS = ['username']
