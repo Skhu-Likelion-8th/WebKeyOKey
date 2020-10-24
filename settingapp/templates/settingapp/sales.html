@@ -1,18 +1,25 @@
-{% extends 'main/base.html' %} {% block content %}
-<div class="card" style="width: 50rem">
+{% extends 'main/base.html' %} {% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'settingapp/css/sales.css' %}" />
+{% endblock css %}
+
+{% block content %}
+<div class="Calendar">
     2020
     <!-- 달력 공간 -->
 </div>
-<div class="card" style="width: 18rem">
-    <h3>년 매출</h3>
-    <h1>매출 금액</h1>
-</div>
-<div class="card" style="width: 18rem">
-    <h3>월 매출</h3>
-    <h1>매출 금액</h1>
-</div>
-<div class="card" style="width: 18rem">
-    <h3>일 매출</h3>
-    <h1>매출 금액</h1>
+<div class=sales>
+    <div class="card" style="width: 18rem">
+        <h3>년 매출</h3>
+        <h1>매출 금액</h1>
+    </div>
+    <div class="card" style="width: 18rem">
+        <h3>월 매출</h3>
+        <h1>매출 금액</h1>
+    </div>
+    <div class="card" style="width: 18rem">
+        <h3>일 매출</h3>
+        <h1>매출 금액</h1>
+    </div>
 </div>
 {% endblock content %}

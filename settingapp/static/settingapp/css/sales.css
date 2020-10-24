@@ -1,0 +1,18 @@
+.card{
+    margin-left: 1300px;
+    margin-top: 100px;
+    text-align: center;
+    width: 554px;
+    height: 140px;
+    border-radius: 56px;
+    background-color: #ffb793;
+}
+
+h3{
+    margin-top: auto;
+}
+
+h1{
+    margin-top: auto;
+    margin-bottom: auto;
+}

@@ -1,4 +1,10 @@
-{% extends 'main/base.html' %} {% block content %}
+{% extends 'main/base.html' %} {% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'settingapp/css/addmenu.css' %}" />
+{% endblock css %}
+
+{% block content %}
+<div class="all_addmenu">
 <form action="{% url 'addmenu' %}">
     <div class="menu_name">
         <label for="exampleFormControlInput1">메뉴이름</label>
