@@ -1,8 +1,7 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from main.models import Menu
-from .forms import AddForm, EditForm
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect, HttpResponse
+from main.models import Menu, Option, CustomUser
+from .forms import AddForm, EditForm, OptionForm, CustomForm
 
-# 광현's part, 찬미's part
 def setting(request):
     return render(request, 'settingapp/setting.html') 
 
@@ -10,19 +9,21 @@ def sales(request):
     return render(request, 'settingapp/sales.html')
 
 def settingmenu(request):
-    menus = Menu.objects.all
+    menus = Menu.objects.all()
     return render(request, 'settingapp/settingmenu.html', {'menus': menus})
 
 def addmenu(request):
+    options = Option.objects.all()
     if request.method == 'POST':
-        form = AddForm(request.POST)
+        form = AddForm(request.POST, request.FILES)
         if form.is_valid():
             form = form.save(commit=False)
             form.save()
-            return redirect('settingapp/addmenu')
+            return redirect('settingmenu')
+
     else:
         form = AddForm()
-        return render(request, 'settingapp/addmenu.html', {'form':form})
+        return render(request, 'settingapp/addmenu.html', {'form':form, 'options':options})
 
 def editmenu(request, pk):
     menu = get_object_or_404(Menu, pk=pk)
@@ -48,7 +49,22 @@ def bye(request):
     return render(request, 'settingapp/bye.html')
 
 def option(request):
-    return render(request, 'settingapp/option.html')
+    if request.method == 'POST':
+        form = OptionForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.save()
+            return redirect('addmenu')
+    else:
+        form = OptionForm()
+        return render(request, 'settingapp/option.html', {'form':form})
+
+def delete_option(request, pk):
+    # post = get_object_or_404(Post, pk=pk)
+    # post.delete()
+    option = get_object_or_404(Option, pk=pk)
+    option.delete()
+    return redirect('settingmenu')
 
 # 달력구현
 import datetime

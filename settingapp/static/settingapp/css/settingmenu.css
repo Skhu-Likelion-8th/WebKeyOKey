@@ -1,4 +1,4 @@
-.card{
+.card {
     float: left;
     margin-left: 35px;
     margin-top: 10px;
@@ -6,12 +6,12 @@
     height: 400px;
 }
 
-.btn-secondarybtn{
+.btn-secondarybtn {
     text-align: center;
     width: 340px;
     height: 400px;
     font-size: 200px;
-    font-style: ;
+    /* font-style: ; */
 }
 
 .menu .card img {
