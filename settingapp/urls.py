@@ -10,6 +10,7 @@ urlpatterns = [
     path('settingmenu/', views.settingmenu, name='settingmenu'),
     path('addmenu/', views.addmenu, name='addmenu'),
     path('editmenu/<int:pk>', views.editmenu, name='editmenu'),
-    path('delete_user/<int:pk>', views.delete, name='delete_user'), #유저 삭제하는 것
+    path('delete_user/', views.delete_user, name='delete_user'), #유저 삭제하는 것
+    path('', include('django.contrib.auth.urls')),
     path('delete_option/<int:pk>', views.delete_option, name='delete_option'),
 ]

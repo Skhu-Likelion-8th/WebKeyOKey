@@ -66,6 +66,10 @@ def delete_option(request, pk):
     option.delete()
     return redirect('settingmenu')
 
+def delete_user(request):
+    request.user.delete()
+    return redirect('home')
+
 # 달력구현
 import datetime
 import calendar

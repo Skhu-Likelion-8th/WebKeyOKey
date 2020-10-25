@@ -34,7 +34,7 @@
         <img src="{% static 'main/img/homeimg/헤더4.png' %}">
         <img src="{% static 'main/img/homeimg/헤더5.png' %}">
         {% if user.is_authenticated %}
-    
+        
         {% else %}
             <div class="signupbox">
                 <form method="POST" action="/signin">
