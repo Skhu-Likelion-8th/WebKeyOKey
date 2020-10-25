@@ -43,8 +43,8 @@
     <div class="option_check">
         <p>옵션 확인</p>
         <label for="exampleFormControlSelect2">포장(Take out)가능합니까?</label>
-        <input type="checkbox" id="switch" checked switch="none" name='takeout' value="True"/>
-        <label for="switch"></label>
+        <input type="checkbox" id="exampleFormControlSelect2" checked switch="none" name='takeout' value="True"/>
+        <!-- <label for="switch"></label> -->
     </div>
     <div class="other_options">
         <h4>기타옵션</h4>
@@ -111,7 +111,7 @@
 
         <a href="{% url 'option' %}" type="button" class="btn btn-outline-primary">기타옵션추가하기</a>
 
-        <a href="{% url 'settingmenu' %}" type="submit" class="btn btn-primary btn-lg btn-block">메뉴등록하기</a>
+        <input href="{% url 'settingmenu' %}" type="submit" class="btn btn-primary btn-lg btn-block" value="메뉴등록하기"></input>
     </div>
 </form>
 {% endblock content %}

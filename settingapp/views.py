@@ -1,15 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect, HttpResponse
-from main.models import Menu, Option, CustomUser
+from main.models import Menu, Option, CustomUser, Pay
 from .forms import AddForm, EditForm, OptionForm, CustomForm
+from datetime import datetime
+from django.utils.dateformat import DateFormat
 
 def setting(request):
     return render(request, 'settingapp/setting.html') 
 
-def sales(request):
-    return render(request, 'settingapp/sales.html')
-
 def settingmenu(request):
     menus = Menu.objects.all()
+    user = request.user
     return render(request, 'settingapp/settingmenu.html', {'menus': menus})
 
 def addmenu(request):
@@ -18,9 +18,9 @@ def addmenu(request):
         form = AddForm(request.POST, request.FILES)
         if form.is_valid():
             form = form.save(commit=False)
+            form.user_id = request.user
             form.save()
             return redirect('settingmenu')
-
     else:
         form = AddForm()
         return render(request, 'settingapp/addmenu.html', {'form':form, 'options':options})
@@ -82,7 +82,20 @@ def sales(request):
     html_cal = cal.formatmonth(withyear=True)
     result_cal = mark_safe(html_cal)
 
-    context = {'calendar' : result_cal, 'prev_month' : prev_month_var, 'next_month' : next_month_var}
+    user = request.user
+    pays = Pay.objects.filter(user=user)
+    pyear = 0
+    pmonth = 0
+    pday = 0
+    for pay in pays:
+        if pay.date.year == today.year:
+            pyear += pay.total
+        if pay.date.month == today.month:
+            pmonth += pay.total
+        if pay.date.day == today.day:
+            pday += pay.total
+
+    context = {'calendar' : result_cal, 'prev_month' : prev_month_var, 'next_month' : next_month_var, 'pyear':pyear, 'pmonth':pmonth, 'pday':pday }
 
     return render(request, 'settingapp/sales.html', context)
 

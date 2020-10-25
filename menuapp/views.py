@@ -57,6 +57,7 @@ def pay(request):
 
 def success(request):
     pay = Pay()
+    pay.user = request.user
     pay.date = datetime.today().strftime("%Y-%m-%d %H:%M:%S")
     pay.total = 0
     pay.order_num = random.randrange(0,500)

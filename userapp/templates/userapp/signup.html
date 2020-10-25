@@ -5,7 +5,14 @@
 <link rel="stylesheet" type="text/css" href="{% static 'userapp/css/signup.css' %}" />
 {% endblock css%}
 
-<!-- 기본 Navbar -->
+<!-- 기본 Navbar 변형 로고누르면 홈으로 -->
+{% block nav %}
+<nav class="navbar sticky-top navbar-light nav-color nav-center">
+    <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static 'main/img/logo/OK_가로형v.png' %}" width="130" height="30" class="d-inline-block align-top" alt=" " loading="lazy" />
+    </a>
+</nav>
+{% endblock nav %}
 
 <!-- Content -->
 

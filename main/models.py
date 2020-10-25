@@ -60,6 +60,7 @@ class Basket(models.Model):
     count = models.IntegerField()
 
 class Pay(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='user')
     date = models.DateTimeField()
     total = models.IntegerField()
     order_num = models.IntegerField()

@@ -2,24 +2,37 @@
 <link rel="stylesheet" type="text/css" href="{% static 'menuapp/css/order.css' %}" />
 {% endblock css %}
 
-<!--기본 Navbar -->
+<!-- order.html용 boss Navbar -->
+{% block nav %}
+<nav class="navbar sticky-top navbar-light nav-color">
+    <a class="navbar-brand" href="{% url 'boss' %}">
+        <img src="{% static 'main/img/logo/OK_가로형v.png' %}" width="130" height="30" margin-left="20"
+            class="d-inline-block align-top" alt=" " loading="lazy" />
+    </a>
+
+    <div class="bossbuttons">
+        <a href="{% url 'logout' %}" class="btn btn-primary">로그아웃</a>
+        <a href="{% url 'sales' %}" class="btn btn-primary">매출확인</a>
+        <a href="{% url 'setting' %}" class="btn btn-primary">설정</a>
+    </div>
+</nav>
+{% endblock nav %}
 
 {% block content %}
 <div class="order">
-    <ol type="1">
+    <!-- <ol type="1"> -->
         {% for por in por_list.all %}
         {% if por.orders.count > 0 %}
         <div class="card" style="width: 18rem;">
             <div class="card-board">
-                <h2>
-                    <li class="card-number">주문번호 {{ por.order_num }}</li>
-                </h2>
-                <hr>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true"
-                        onclick="location.href ='{% url 'delete_order' pk=por.pk %}'">&times;</span> <!-- orders 삭제 -->
+                        onclick="location.href ='{% url 'delete_order' pk=por.pk %}'">&times;</span>
+                    <!-- orders 삭제 -->
                 </button>
-
+                <h2 class="card-number">주문번호 {{ por.order_num }}
+                </h2>
+                <hr>
                 {% for or in por.orders.all %}
                 {% if forloop.counter < 3 %}
                 <div class="card-text">
@@ -51,6 +64,8 @@
         </div>
         {% endif %}
         {% endfor %}
+    </ol>
+    <ol type="1">
         <!-- 예시 -->
         <div class="card">
             <div class="card-board">
@@ -163,7 +178,7 @@
                 <p class="take">매장/포장 표시</p>
             </div>
         </div>
-    </ol>
+    <!-- </ol> -->
 </div>
 
 {% endblock content %}
