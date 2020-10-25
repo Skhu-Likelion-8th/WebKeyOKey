@@ -33,8 +33,11 @@
         <img src="{% static 'main/img/homeimg/헤더3.png' %}">
         <img src="{% static 'main/img/homeimg/헤더4.png' %}">
         <img src="{% static 'main/img/homeimg/헤더5.png' %}">
+
         {% if user.is_authenticated %}
-        
+        <br><br><br><br>
+            <h1>안녕하세요, {{user.username}}님!</h1>
+            <a href="{% url 'logout' %}" class="signinbutton">로그아웃</a>
         {% else %}
             <div class="signupbox">
                 <form method="POST" action="/signin">
